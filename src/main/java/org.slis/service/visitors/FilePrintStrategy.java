@@ -1,16 +1,12 @@
 package org.slis.service.visitors;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
-public class MyFileVisitor extends SimpleFileVisitor<Path> {
-
-    private final Path destination;
-
-    public MyFileVisitor(Path destination) {
-        this.destination = destination;
-    }
+public class FilePrintStrategy extends SimpleFileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path path, BasicFileAttributes basicFileAttributes) throws IOException {
@@ -27,6 +23,5 @@ public class MyFileVisitor extends SimpleFileVisitor<Path> {
         System.err.println(String.format("FAIL: file(%s). Exception: %s", file, exc));
         return FileVisitResult.CONTINUE;
     }
-
 
 }
